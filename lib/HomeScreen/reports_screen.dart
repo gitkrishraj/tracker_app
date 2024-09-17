@@ -136,6 +136,7 @@ class ReportsScreen extends StatelessWidget {
           ],
         ),
         Divider(color: Colors.grey),
+        SizedBox(height: 12, )
       ],
     );
   }

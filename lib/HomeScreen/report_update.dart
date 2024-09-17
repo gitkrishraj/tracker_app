@@ -155,6 +155,7 @@ class ReportUpload extends StatelessWidget {
           ],
         ),
         Divider(color: Colors.grey),
+        SizedBox(height: 12,)
       ],
     );
   }

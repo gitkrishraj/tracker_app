@@ -104,6 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   imagePath: 'assets/images/time.png',
                   label: "Clock In/Out",
                   index: 0,
+                  
                   onTap: () {
                     setState(() {
                       selectedMenuItemIndex = 0;
@@ -251,7 +252,7 @@ class _HomeScreenState extends State<HomeScreen> {
     required Function() onTap,
   }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 0),
       child: Material(
         color: selectedMenuItemIndex == index ? Color(0xFF2F3180) : Colors.transparent,
         shape: RoundedRectangleBorder(
@@ -332,26 +333,29 @@ class _HomeScreenState extends State<HomeScreen> {
                 elevation: 5.0,
                 child: Container(
                   width: 200,
-                  height: 168,
+                  height: 150,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       ListTile(
+                        dense: true,
                         leading: Icon(Icons.star, color: Color(0xFF2F3180), size: 10),
                         title: Text('Message From HR', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 4.0, vertical: 0),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 4.0, vertical:0),
                       ),
                       SizedBox(height: 0),
                       ListTile(
+                        dense: true,
                         leading: Icon(Icons.star, color: Color(0xFF2F3180), size: 10),
                         title: Text('Notification Settings', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
                         contentPadding: EdgeInsets.symmetric(horizontal: 4.0, vertical: 0),
                       ),
                       SizedBox(height: 0),
                       ListTile(
+                        dense: true,
                         leading: Icon(Icons.star, color: Color(0xFF2F3180), size: 10),
                         title: Text('About', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 4.0, vertical: 0),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 4.0, vertical:0),
                       ),
                     ],
                   ),
