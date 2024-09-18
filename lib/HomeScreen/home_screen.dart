@@ -306,65 +306,77 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _showCustomPopupMenu(BuildContext context) {
-    final RenderBox renderBox = context.findRenderObject() as RenderBox;
-    final position = renderBox.localToGlobal(Offset.zero);
-    final size = renderBox.size;
+  final RenderBox renderBox = context.findRenderObject() as RenderBox;
+  final position = renderBox.localToGlobal(Offset.zero);
+  final size = renderBox.size;
 
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Stack(
-          children: [
-            Positioned(
-              top: position.dy + 60,
-              left: position.dx + size.width - 60, 
-              child: CustomPaint(
-                size: Size(40, 20),
-                painter: ArrowPainter(), 
-              ),
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Stack(
+        children: [
+          // Arrow
+          Positioned(
+            top: position.dy + 60,
+            left: position.dx + size.width - 55, 
+            child: CustomPaint(
+              size: Size(20, 20),
+              painter: ArrowPainter(),
             ),
-            Positioned(
-              top: position.dy + 74, 
-              left: position.dx + size.width - 210, 
-              child: Material(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+          ),
+          
+          // Popup Menu
+          Positioned(
+            top: position.dy + 74, 
+            left: position.dx + size.width - 210, 
+            child: Material(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12), 
+              ),
+              elevation: 0.0,
+              child: Container(
+                width: 180, 
+                height: 90, 
+                padding: EdgeInsets.symmetric(vertical: 5), 
+                decoration: BoxDecoration(
+                  color: Colors.white, 
+                  borderRadius: BorderRadius.circular(12), 
                 ),
-                elevation: 5.0,
-                child: Container(
-                  width: 200,
-                  height: 150,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ListTile(
-                        dense: true,
-                        leading: Icon(Icons.star, color: Color(0xFF2F3180), size: 10),
-                        title: Text('Message From HR', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 4.0, vertical:0),
-                      ),
-                      SizedBox(height: 0),
-                      ListTile(
-                        dense: true,
-                        leading: Icon(Icons.star, color: Color(0xFF2F3180), size: 10),
-                        title: Text('Notification Settings', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 4.0, vertical: 0),
-                      ),
-                      SizedBox(height: 0),
-                      ListTile(
-                        dense: true,
-                        leading: Icon(Icons.star, color: Color(0xFF2F3180), size: 10),
-                        title: Text('About', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 4.0, vertical:0),
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _buildPopupMenuItem('Message From HR'),
+                    _buildPopupMenuItem('Notification Settings'),
+                    _buildPopupMenuItem('About'),
+                  ],
                 ),
               ),
             ),
-          ],
-        );
-      },
-    );
-  }
+          ),
+        ],
+      );
+    },
+  );
+}
+
+Widget _buildPopupMenuItem(String text) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 4.0), 
+    child: Row(
+      children: [
+        SizedBox(width: 10), 
+        Icon(Icons.star, color: Color(0xFF2F3180), size: 10), 
+        SizedBox(width: 10), 
+        Text(
+          text,
+          style: TextStyle(
+            fontSize: 12, 
+            fontWeight: FontWeight.w400, 
+            color: Colors.black, 
+          ),
+        ),
+      ],
+    ),
+  );
+}
 }
